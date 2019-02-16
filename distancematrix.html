@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Pearl Hacks App</title>
+
+</head>
+
+<body>
+
+  <div id="root"></div>
+
+  <script>
+	var request = new XMLHttpRequest();
+	origins="ChIJMcO2hOXCrIkRnixdicdH6TU"
+	destinations="Seattle|Cupertino|Atlanta|Providence|New York"
+	request.open('GET', 'https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=place_id:'+origins+'&destinations='+destinations+'&key=AIzaSyAIDJxS6sp_j8PJNk7y0RapKInxDBJkIz8', true);
+	request.onload = function () {
+
+	  // Begin accessing JSON data here
+	  var data = JSON.parse(this.response);
+
+	  if (request.status >= 200 && request.status < 400) {
+	  	console.log(data["rows"][0])
+	  	var elems=data["rows"][0]['elements'];
+	  	var adds=data["destination_addresses"];
+	  	places=[]
+	  	for(var i=0; i<elems.length;i++){
+	  		var dis=Number(elems[i]['distance']['text'].replace(",","").replace(" mi",""));
+	  		var name=adds[i];
+	  		places.push({"name":name, "distance":dis});
+	  	}
+	    
+	    function compare(a,b) {
+		  if (a.distance < b.distance )
+		    return -1;
+		  if (a.distance > b.distance )
+		    return 1;
+		  return 0;
+		}
+
+		places.sort(compare);
+		console.log(places);
+	    
+
+	  } else {
+	    console.log('error');
+	  }
+	}
+	request.send();
+
+  </script>
+</body>
+
+</html>
