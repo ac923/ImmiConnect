@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support System</title>
+    <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../scripts.js"></script>
+    <script src="../bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../stylesheet.css">
+</head>
+
+<body>
+<script>
+    printHeaderMentor();
+
+    $('.navig').css('margin-bottom', '0px');
+
+    $('#viewQs').css("background-color", "rgb(17, 74, 123)")
+            .css("border-color", "rgb(17, 74, 123)")
+            .css("color", "white");
+</script>
+
+<div class="page-wrap">
+    <div class="jumbotron set-header set-header-create">
+        <h2 id="qlistTitle" class="set-manager">Find Mentors</h2>
+
+    </div>
+
+    <br><br>
+    <div class="container q-table">
+        <table id="qTable" class="table table-hover table-striped hidden display select">
+            <tr>
+                <th>Question</th>
+                <th>Unit</th>
+                <th>Remove</th>
+            </tr>
+        </table>
+
+
+        <!-- button to access new question modal -->
+        <a class="btn btn-default add-q" role="button" data-toggle="modal"
+           style="margin-top: 15px;" data-target="#newQ">Find Your Mentor</a>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="newQ" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <button type="button" class="close"
+                            data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        Find Your Mentor
+                    </h4>
+                </div>
+
+                <!-- Modal Body -->
+                <div class="modal-body">
+
+                    <form id="make-newq" method="POST">
+                        <div class="form-group">
+                            <div class="set-question set-question-input">
+                                <label for="question">What's your location?</label>
+                                <input type="text" class="form-control" id="question"
+                                       name="qname" value="" placeholder="Enter your City,State"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleSelect2">Language Preference</label>
+                            <div></div>
+                            <!-- <select class="form-control" id="unit" name="unit"> -->
+                            <select name="unit" multiple>
+                                <option value ="Arabic">Arabic</option>
+                                <option value ="Bengali">Bengali</option>
+                                <option value ="Chinese">Chinese</option>
+                                <option value ="English">English</option>
+                                <option value ="Farsi">Farsi</option>
+                                <option value ="French">French</option>
+                                <option value ="German">German</option>
+                                <option value ="Hindi">Hindi</option>
+                                <option value ="Italian">Italian</option>
+                                <option value ="Japanese">Japanese</option>
+                                <option value ="Korean">Korean</option>
+                                <option value ="Marathi">Marathi</option>
+                                <option value ="Polish">Polish</option>
+                                <option value ="Portugese">Portugese</option>
+                                <option value ="Punjabi">Punjabi</option>
+                                <option value ="Russian">Russian</option>
+                                <option value ="Turkish">Turkish</option>
+                                <option value ="Ukrainian">Ukrainian</option>
+                                <option value ="Urdu">Urdu</option>
+                                <option value ="Vietnamese">Vietnamese</option>
+                            </select>
+                        </div>
+                        <div class="form-inline">
+                            <label for="exampleSelect2">Gender Preference</label>
+                            <select class="form-control" id="unit" name="unit">
+                                <option value ="Male">Male</option>
+                                <option value ="Female">Female</option>
+                                <option value ="No Preference">No Preference</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleSelect2">What is your question?</label>
+                            <div></div>
+                        <select name="unit" multiple>
+                                <option value ="Finance">Finance</option>
+                                <option value ="Religious">Religious</option>
+                                <option value ="Medical">Medical</option>
+                                <option value ="Real Estate">Real Estate</option>
+                            </select>
+                        </div>
+                        <div></div>
+                            <button type="submit" class="btn btn-primary">Find Mentor</button>
+                            <button type="submit" class="btn btn-primary">Cancel</button>
+
+                        </div>
+                    </form>
+                </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</script>

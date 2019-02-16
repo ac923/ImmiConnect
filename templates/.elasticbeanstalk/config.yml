@@ -1,0 +1,14 @@
+branch-defaults:
+  master:
+    environment: Sample-env-1
+environment-defaults:
+  Sample-env-1:
+    branch: null
+    repository: null
+global:
+  application_name: ActiveLearning
+  default_ec2_keyname: null
+  default_platform: 64bit Amazon Linux 2016.09 v2.3.0 running PHP 7.0
+  default_region: us-east-2
+  profile: eb-cli
+  sc: git
