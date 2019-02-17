@@ -14,9 +14,7 @@
 <body>
 <script>
     printHeaderMentor();
-
     $('.navig').css('margin-bottom', '0px');
-
     $('#viewQs').css("background-color", "rgb(17, 74, 123)")
             .css("border-color", "rgb(17, 74, 123)")
             .css("color", "white");
@@ -69,42 +67,13 @@
                     <form id="make-newq" method="POST">
                         <div class="form-group">
                             <div class="set-question set-question-input">
-                                <label for="question">What's your location?</label>
+                                <label id="locationid" for="question">What's your location?</label>
                                 <input type="text" class="form-control" id="question"
                                        name="qname" value="" placeholder="Enter your City,State"/>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="exampleSelect2">Language Preference</label>
-                            <div></div>
-                            <!-- <select class="form-control" id="unit" name="unit"> -->
-                            <select name="unit" multiple>
-                                <option value ="Arabic">Arabic</option>
-                                <option value ="Bengali">Bengali</option>
-                                <option value ="Chinese">Chinese</option>
-                                <option value ="English">English</option>
-                                <option value ="Farsi">Farsi</option>
-                                <option value ="French">French</option>
-                                <option value ="German">German</option>
-                                <option value ="Hindi">Hindi</option>
-                                <option value ="Italian">Italian</option>
-                                <option value ="Japanese">Japanese</option>
-                                <option value ="Korean">Korean</option>
-                                <option value ="Marathi">Marathi</option>
-                                <option value ="Persian">Persian</option>
-                                <option value ="Polish">Polish</option>
-                                <option value ="Portugese">Portugese</option>
-                                <option value ="Punjabi">Punjabi</option>
-                                <option value ="Russian">Russian</option>
-                                <option value ="Spanish">Spanish</option>
-                                <option value ="Turkish">Turkish</option>
-                                <option value ="Ukrainian">Ukrainian</option>
-                                <option value ="Urdu">Urdu</option>
-                                <option value ="Vietnamese">Vietnamese</option>
-                            </select>
-                        </div>
                         <div class="form-inline">
-                            <label id="form 3" for="exampleSelect3">Gender Preference</label>
+                            <label id="genderid" for="exampleSelect3">Gender Preference</label>
                             <select class="form-control" id="unit" name="unit">
                                 <option value ="Male">Male</option>
                                 <option value ="Female">Female</option>
@@ -112,7 +81,7 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label id="form 4" for="exampleSelect4">What is your question?</label>
+                            <label id="questionid" for="exampleSelect4">What is your question?</label>
                             <div></div>
                         <select name="unit" multiple>
                                 <option id= "f41" value ="Finance">Finance</option>
@@ -137,7 +106,6 @@
     <script>
     languages=["spanish","persian","russian","french","hindi"]
     codes=["es","fa","ru","fr","hi"];
-
     function translateElement(lang, elemID){
         /*
         lang=language code
@@ -145,27 +113,40 @@
         */
         var x = document.getElementById(elemID).innerHTML;
         l=codes[languages.indexOf(lang.toLowerCase())]
-
         var postRequest=new XMLHttpRequest();
         postRequest.open('POST', 'https://translation.googleapis.com/language/translate/v2?key=AIzaSyAIDJxS6sp_j8PJNk7y0RapKInxDBJkIz8&q='+x+'&target='+l, true);
         postRequest.onload = function () {
-
           var data = JSON.parse(this.response);
           if (postRequest.status >= 200 && postRequest.status < 400) {
             document.getElementById(elemID).innerHTML=data['data']['translations'][0]['translatedText'];
-
           }else {
             console.log('error');
           }
         }
         postRequest.send();
-
     }
-
     //----example call
-    translateElement("Russian","form 4");
-    
-
+    var optionID=document.getElementById('langdrop');
+    if (optionID == 'French')
+        translateElement("French","locationid");
+        translateElement("French","genderid");
+        translateElement("French","questionid");
+    if (optionID == 'Hindi')
+        translateElement("Hindi","locationid");
+        translateElement("Hindi","genderid");
+        translateElement("Hindi","questionid");
+    if (optionID == 'Persian')
+        translateElement("Persian","locationid");
+        translateElement("Persian","genderid");
+        translateElement("Persian","questionid");
+    if (optionID == 'Russian')
+        translateElement("Russian","locationid");
+        translateElement("Russian","genderid");
+        translateElement("Russian","questionid");
+    if (optionID == 'Spanish')
+        translateElement("Spanish","locationid");
+        translateElement("Spanish","genderid");
+        translateElement("Spanish","questionid");
     </script>
 
 
