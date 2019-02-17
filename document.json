@@ -12,7 +12,8 @@
     "tags": [
       "Education",
       "Finance",
-      "Career"
+      "Career",
+      "General"
     ]
   },
   {
@@ -27,7 +28,8 @@
     "tags": [
       "Education",
       "Career",
-      "Immigration"
+      "Immigration",
+      "General"
     ]
   },
   {
@@ -58,7 +60,8 @@
     "tags": [
       "Education",
       "Immigration",
-      "Medical"
+      "Medical",
+      "General"
     ]
   },
   {
@@ -73,7 +76,8 @@
     "tags": [
       "Finance",
       "Immigration",
-      "Medical"
+      "Medical",
+      "General"
     ]
   },
   {
@@ -89,7 +93,8 @@
       "Finance",
       "Immigration",
       "Medical",
-      "Car"
+      "Car",
+      "General"
     ]
   },
   {
@@ -121,7 +126,8 @@
       "Education",
       "Car",
       "Career",
-      "Immigration"
+      "Immigration",
+      "General"
     ]
   },
   {
@@ -187,7 +193,6 @@
     ],
     "gender": "female",
     "tags": [
-      "General",
       "General",
       "Immigration",
       "Career"
