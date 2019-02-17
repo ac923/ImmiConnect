@@ -34,14 +34,16 @@
 								names=query.split("?")[0];
 								locations=query.split("?")[1]
 								numbers=query.split("?")[2]
+								dis=query.split("?")[3]
 
 							
 								var nameList=names.replace("Name=","").split(",")
 								var numList=numbers.replace("Number=","").split(",")
 								var locList=locations.replace("Location=","").split(",")
+								var dislist=dis.replace("Dis=","").split(",")
 								var result = {};
 								for(var i=0;i<nameList.length;i++){
-									document.write(nameList[i].split("%20").join(" ") +"     "+ numList[i]+"     "+ locList[2*i].split("%20").join(" ")+","+locList[2*i+1]+"<br>");
+									document.write(nameList[i].split("%20").join(" ") +"     "+ numList[i]+"     "+ locList[2*i].split("%20").join(" ")+","+locList[2*i+1]+"     "+dislist[i].split("%20").join(" ")+"<br>");
 									var btn = document.createElement("BUTTON");
 									btn.innerHTML="Connect"
   									document.getElementById("results").appendChild(btn);

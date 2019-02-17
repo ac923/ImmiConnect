@@ -75,6 +75,7 @@ Select your Language:
             var namearr = []
             var addressarr = []
             var numberarr = []
+            var disarr = []
             var arrayLength = results.length; 
             for (var i = 0; i < arrayLength; i++) {
                 var name = results[i]["name"]
@@ -83,13 +84,17 @@ Select your Language:
                 addressarr.push(address)
                 var number = results[i]["phone"]
                 numberarr.push(number)
+                var dis=results[i]["distance"]
+                disarr.push(dis)
                 
             }
+            console.log(disarr);
             //for (var i = 0; i < namearr.length; i++) {
             var queryString = "?Name=" + namearr
             var queryString1 = "?Location=" + addressarr
             var queryString2 = "?Number=" + numberarr
-            window.location = "listofmentors" + queryString + queryString1 + queryString2;
+            var queryString3 = "?Dis=" + disarr
+            window.location = "listofmentors" + queryString + queryString1 + queryString2+ queryString3;
 
             //};
         // window.onload = function() {
