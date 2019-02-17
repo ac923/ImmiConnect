@@ -24,9 +24,37 @@
 
 <div class="page-wrap">
     <div class="jumbotron set-header set-header-create">
-        <h2 id="qlistTitle" class="set-manager">Find Mentors</h2>
+        <h2 id="titleofpage" class="set-manager">Find Mentors</h2>
 
     </div>
+
+Select your Language: 
+<select id="languagesel">
+    <option value=""></option>
+    <option value="french">French</option>
+    <option value="hindi">Hindi</option>
+    <option value="persian">Persian</option>
+    <option value ="russian" id="Ru">Russian</option>
+    <option value ="spanish" id="Sp">Spanish</option>
+</select>
+<input type="button" value="Change the Language" onclick="GetSelectedTextValue()" />
+<script type="text/javascript">
+    function GetSelectedTextValue() {
+        var ddlFruits = document.getElementById("languagesel");
+        var selectedText = ddlFruits.options[ddlFruits.selectedIndex].innerHTML;
+        var selectedValue = ddlFruits.value;
+        translateElement(selectedValue,"locationid");
+        translateElement(selectedValue,"genderid");
+        translateElement(selectedValue,"questionid");
+        translateElement(selectedValue,"unit");
+        translateElement(selectedValue,"categoryid");
+        translateElement(selectedValue,"titleofpage");
+
+
+    }
+</script>
+
+
 
     <br><br>
     <div class="container q-table">
@@ -43,6 +71,7 @@
         <a class="btn btn-default add-q" role="button" data-toggle="modal"
            style="margin-top: 15px;" data-target="#newQ">Find Your Mentor</a>
     </div>
+
 
     <!-- Modal -->
     <div class="modal fade" id="newQ" tabindex="-1" role="dialog"
@@ -69,7 +98,7 @@
                             <div class="set-question set-question-input">
                                 <label id="locationid" for="question">What's your location?</label>
                                 <input type="text" class="form-control" id="question"
-                                       name="qname" value="" placeholder="Enter your City,State"/>
+                                       name="qname" value="" />
                             </div>
                         </div>
                         <div class="form-inline">
@@ -83,11 +112,17 @@
                         <div class="form-group">
                             <label id="questionid" for="exampleSelect4">What is your question?</label>
                             <div></div>
-                        <select name="unit" multiple>
-                                <option id= "f41" value ="Finance">Finance</option>
+                        <select id = "categoryid" name="categoryid" multiple>
+                                <option value ="Finance">Finance</option>
                                 <option value ="Religious">Religious</option>
                                 <option value ="Medical">Medical</option>
                                 <option value ="Real Estate">Real Estate</option>
+                                <option value ="Immigration">Immigration</option>
+                                <option value ="Career">Career</option>
+                                <option value ="Education">Education</option>
+                                <option value ="Car">Car</option>
+                                <option value ="Housing">Housing</option>
+                                <option value ="General">General</option>
                             </select>
                         </div>
                         <div></div>
@@ -125,30 +160,5 @@
         }
         postRequest.send();
     }
-    //----example call
-    var optionID=document.getElementById('langdrop');
-    if (optionID == 'French')
-        translateElement("French","locationid");
-        translateElement("French","genderid");
-        translateElement("French","questionid");
-    if (optionID == 'Hindi')
-        translateElement("Hindi","locationid");
-        translateElement("Hindi","genderid");
-        translateElement("Hindi","questionid");
-    if (optionID == 'Persian')
-        translateElement("Persian","locationid");
-        translateElement("Persian","genderid");
-        translateElement("Persian","questionid");
-    if (optionID == 'Russian')
-        translateElement("Russian","locationid");
-        translateElement("Russian","genderid");
-        translateElement("Russian","questionid");
-    if (optionID == 'Spanish')
-        translateElement("Spanish","locationid");
-        translateElement("Spanish","genderid");
-        translateElement("Spanish","questionid");
-    </script>
-
-
-
+   
 </script>
