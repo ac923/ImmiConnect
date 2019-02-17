@@ -10,7 +10,7 @@ $(document).ready(function() {
 function printHeaderMentor() {
     var header = "";
     header += "<div class=\"jumbotron professor\" id=\"jumbo\">";
-    header += "<a href=\"home.html\"><img alt=\"logo\" src=\"{{url_for('static', filename='immigrationbackground.png')}}\" height=\"100\"></a>";
+    header += "<a href=\"home.html\"><img alt=\"logo\" src=\"../immigrationbackground.png\" height=\"100\"></a>";
     header += "<a class=\"nav-link-prof\" href=\"mentorpage.html\" id=\"qSets\" " +
         "style=\"margin-left: 40px;\"> ImmiConnect </a>";
     header += "</div>"

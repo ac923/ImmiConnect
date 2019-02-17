@@ -3,42 +3,42 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Support System</title>
-    <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <title>Support System for Immigrants!</title>
+    <link href="{{ url_for('static',filename='bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" media="screen">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script type="text/javascript" src="../scripts.js"></script>
-    <script src="../bootstrap/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="../stylesheet.css">
+    <script src="{{ url_for('static',filename='bootstrap/js/bootstrap.min.js')}}"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='stylesheet.css')}}">
+
 </head>
 
 <body>
 <script>
-    printHeaderMentor();
-    $('.navig').css('margin-bottom', '0px');
-    $('#viewQs').css("background-color", "rgb(17, 74, 123)")
-            .css("border-color", "rgb(17, 74, 123)")
-            .css("color", "white");
+    var header = "";
+    header += "<div class=\"jumbotron professor\" id=\"jumbo\">";
+    header += "<img alt=\"logo\" src=\"{{url_for('static', filename='immigrationbackground.png')}}\" height=\"100\">";
+    header += "<h2 id=\"titleofpage\" class=\"set-manager\">ImmiConnect</h2>";
+
+    header += "</div>"
+    document.write(header);
+
 </script>
 
 
 
-<div class="page-wrap">
-    <div class="jumbotron set-header set-header-create">
-        <h2 id="titleofpage" class="set-manager">Find Mentors</h2>
 
-    </div>
-
+<div></div>
 Select your Language: 
-<select id="languagesel">
+<select class= "form-inline" id="languagesel">
     <option value=""></option>
     <option value="french">French</option>
     <option value="hindi">Hindi</option>
     <option value="persian">Persian</option>
-    <option value ="russian" id="Ru">Russian</option>
-    <option value ="spanish" id="Sp">Spanish</option>
+    <option value ="russian">Russian</option>
+    <option value ="spanish">Spanish</option>
 </select>
 <input type="button" value="Change the Language" onclick="GetSelectedTextValue()" />
 <script type="text/javascript">
+
     var selectedValue; 
     function GetSelectedTextValue() {
         var langval = document.getElementById("languagesel");
@@ -51,11 +51,13 @@ Select your Language:
         translateElement(selectedValue,"categoryid");
         translateElement(selectedValue,"titleofpage");
         translateElement(selectedValue,"mentortitle");
+        translateElement(selectedValue,"fmbutton");
 
 
 
     }
     function GetAnswers() {
+        // window.location = "listofmentors";
         var locationstring = document.getElementById("answer").value
         var genderans = document.getElementById("unit")
         var gendertext = genderans.options[genderans.selectedIndex].innerHTML;
@@ -67,14 +69,42 @@ Select your Language:
         var user = {"language": selectedValue, "gender": genderval, "location": locationstring, "tags": categoryval};
 
         $.post("/receiver", JSON.stringify(user), function(err,req,resp){
-        //console.log(resp);
             console.log(JSON.parse(resp.responseText));
+            var results=JSON.parse(resp.responseText);
+            var namearr = []
+            var addressarr = []
+            var numberarr = []
+            var arrayLength = results.length; 
+            for (var i = 0; i < arrayLength; i++) {
+                var name = results[i]["name"]
+                namearr.push(name)
+                var address = results[i]["address"]
+                addressarr.push(address)
+                var number = results[i]["phone"]
+                numberarr.push(number)
+                
+            }
+            //for (var i = 0; i < namearr.length; i++) {
+            var queryString = "?Name=" + namearr
+            var queryString1 = "?Location=" + addressarr
+            var queryString2 = "?Number=" + numberarr
+            window.location = "listofmentors" + queryString + queryString1 + queryString2;
+
+            //};
+        // window.onload = function() {
+        //     var getInput = prompt("Hey type something here: ");
+        //     localStorage.setItem("storageName",getInput);
+        // }
+
         });
         event.preventDefault();
 
     }
 
 </script>
+
+
+
 
 
     <br><br>
@@ -140,10 +170,11 @@ Select your Language:
                             </select>
                         </div>
                         <div></div>
-                            <input type="button" value="Find Mentor" onclick="GetAnswers()" />
+                            <input  type="button" id = "fmbutton" value="Find Mentor" onclick="GetAnswers()" />
 
                             
-                            <button type="submit" class="button">Cancel</button>
+                            <!-- <button href="listofmentors.html" type="submit" class="button">Cancel</button> -->
+<!--                             <p><a href="listofmentors.html" class="btn btn-primary" role="button">Cancel</a></p> -->
 
                         </div>
                 </div>

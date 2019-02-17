@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support System</title>
+    <link href="{{ url_for('static',filename='bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" media="screen">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="{{ url_for('static',filename='bootstrap/js/bootstrap.min.js')}}"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='stylesheet.css')}}">
+</head>
+
+<script>
+    var header = "";
+    header += "<div class=\"jumbotron professor\" id=\"jumbo\">";
+    header += "<img alt=\"logo\" src=\"{{url_for('static', filename='immigrationbackground.png')}}\" height=\"100\">";
+    header += "<h2 id=\"titleofpage\" class=\"set-manager\">ImmiConnect</h2>";
+
+    header += "</div>"
+    document.write(header);
+
+</script>
+
+<div class="programs-wrapper">
+    <div class="col-md-10 col-md-offset-1 col-sm-12 jumbotron main">
+        <div class="program col-md-12 clearfix">
+            <div class="col-md-6 col-sm info-wrapper clearfix">
+                <div class="program-info col-sm-12">
+                    <h4>Name</h4>
+	                	<script>
+								var url = window.location.search;
+								var query = url.substr(1);
+								var result = {};
+								query.split("&").forEach(function(part) {
+									var item = part.split("?");
+									console.log(item)
+									result = decodeURIComponent(item[0]);
+									console.log(result)
+									document.write(result + "<br>");
+									//result[item[0]] = decodeURIComponent(item[1]);
+								});
+								
+
+													 
+						</script> 
+                    <h4 class="location">Location</h4>
+                    	<script>
+	 
+								var url = window.location.search;
+								var query = url.substr(1);
+								var result = {};
+								query.split("&").forEach(function(part) {
+									var item = part.split("?");
+									result = decodeURIComponent(item[1]);
+									//result[item[0]] = decodeURIComponent(item[1]);
+								});
+								document.write(result + "<br>");
+						 
+						</script> 
+					<h4 class="phonenumber">Phone Number</h4>
+                    	<script>
+	 
+								var url = window.location.search;
+								var query = url.substr(1);
+								var result = {};
+								query.split("&").forEach(function(part) {
+									var item = part.split("?");
+									result = decodeURIComponent(item[2]);
+									//result[item[0]] = decodeURIComponent(item[1]);
+								});
+								document.write(result + "<br>");
+						 
+						</script>
+					<div></div>
+                    <button role="button" class="btn btn-default program-button" data-toggle="modal" data-target="#newSignup">Connect</button>
+                </div>
+            </div>
+
+</div>

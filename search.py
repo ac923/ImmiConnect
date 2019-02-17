@@ -12,6 +12,10 @@ def output():
     # serve index template
     return render_template('Mentor/mentorpage.html')
 
+@app.route('/listofmentors')
+def listofmentors():
+    return render_template('Mentor/listofmentors.html')
+
 def sortHelpers(helpers, userLocation):
     origins=userLocation
     destinations=""
