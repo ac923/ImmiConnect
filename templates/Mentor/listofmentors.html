@@ -25,7 +25,7 @@
     <div class="col-md-10 col-md-offset-1 col-sm-12 jumbotron main">
         <div class="program col-md-12 clearfix">
             <div class="col-md-6 col-sm info-wrapper clearfix">
-                <div class="program-info col-sm-12">
+                <div id="results" class="program-info col-sm-12">
                     <h4>Name</h4>
 	                	<script>
 								var url = window.location.search;
@@ -42,6 +42,10 @@
 								var result = {};
 								for(var i=0;i<nameList.length;i++){
 									document.write(nameList[i].split("%20").join(" ") +"     "+ numList[i]+"     "+ locList[2*i].split("%20").join(" ")+","+locList[2*i+1]+"<br>");
+									var btn = document.createElement("BUTTON");
+									btn.innerHTML="Connect"
+  									document.getElementById("results").appendChild(btn);
+  									document.write("<br> <br>");
 								}
 
 
