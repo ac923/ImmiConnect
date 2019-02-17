@@ -66,6 +66,12 @@ Select your Language:
         translateElement(selectedValue,"titleofpage");
         translateElement(selectedValue,"mentortitle");
         translateElement(selectedValue,"fmbutton");
+        translateElement(selectedValue,"male");
+        translateElement(selectedValue,"female");
+        translateElement(selectedValue,"no preference");
+        for(var i=1;i<11;i++){
+            translateElement(selectedValue,"c"+i);
+        }
 
 
 
@@ -168,24 +174,24 @@ Select your Language:
                             <label id="genderid" for="gender">Gender Preference</label>
                             <select id="unit">
                                 <option value=""></option>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
-                                <option value="No Preference">No Preference</option>
+                                <option id="male" value="Male">Male</option>
+                                <option id="female" value="Female">Female</option>
+                                <option id="no preference" value="No Preference">No Preference</option>
                             </select>
                             <div></div>
                             <label id="questionid" for="gender">What is your question?</label>
                             <select id="categoryid">
                                 <option value=""></option>
-                                <option value ="Finance">Finance</option>
-                                <option value ="Religious">Religious</option>
-                                <option value ="Medical">Medical</option>
-                                <option value ="Real Estate">Real Estate</option>
-                                <option value ="Immigration">Immigration</option>
-                                <option value ="Career">Career</option>
-                                <option value ="Education">Education</option>
-                                <option value ="Car">Car</option>
-                                <option value ="Housing">Housing</option>
-                                <option value ="General">General</option>
+                                <option id="c1" value ="Finance">Finance</option>
+                                <option id="c2" value ="Religious">Religious</option>
+                                <option id="c3" value ="Medical">Medical</option>
+                                <option id="c4"value ="Real Estate">Real Estate</option>
+                                <option id="c5" value ="Immigration">Immigration</option>
+                                <option id="c6" value ="Career">Career</option>
+                                <option id="c7" value ="Education">Education</option>
+                                <option id="c8" value ="Car">Car</option>
+                                <option id="c9" value ="Housing">Housing</option>
+                                <option id="c10" value ="General">General</option>
                             </select>
                         </div>
                         <div></div>
