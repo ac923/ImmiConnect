@@ -1,14 +1,20 @@
-studyKeyword = ['college' , 'university' , 'school' , 'study' ] #learn
 
 def findCategory(input):
     return
 
 import json
 from pprint import pprint
-
+from flask import Flask, render_template, request, redirect, Response
+import random, json
 import requests
 import sys
 
+app = Flask(__name__)
+
+@app.route('/')
+def output():
+	# serve index template
+	return render_template('index.html')
 
 def sortHelpers(helpers, userLocation):
 	origins=userLocation
@@ -37,16 +43,24 @@ def sortHelpers(helpers, userLocation):
 	return sortedPlaces
 
 
-
-def findHelper(language, genderPreference, location, tag):
+@app.route('/receiver', methods = ['POST'])
+def findHelper():
     possibleHelpers = []
     with open('document.json') as f:
         data = json.load(f)
+
+    Userdata = request.get_json(force=True)
+    language = []
+    language.append(Userdata["language"])
+    genderPreference = Userdata["gender"]
+    location = Userdata["location"]
+    tag = Userdata["tags"]
+
     foundHelp = False
     for person in data:
         if list(set(language).intersection(person["languages"])) != []: #it is a must
             if list(set(tag).intersection(person["tags"])) != []:
-                if genderPreference != None:
+                if genderPreference != "No Preference":
                     if person["gender"] == genderPreference:
                         foundHelp = True
                         #print (person["name"])
@@ -60,7 +74,7 @@ def findHelper(language, genderPreference, location, tag):
     if foundHelp == False:
         for person in data:
             if list(set(language).intersection(person["languages"])) != []: #it is a must
-                if genderPreference != None:
+                if genderPreference != "No Preference":
                     if person["gender"] == genderPreference:
                         foundHelp = True
                         #print (person["name"])
@@ -75,8 +89,11 @@ def findHelper(language, genderPreference, location, tag):
 
     # We can sort possibleHelpers based on their distance now
     #print (possibleHelpers)
-    return sortHelpers(possibleHelpers, location)
+    return json.dumps(sortHelpers(possibleHelpers, location))
 
-ans = findHelper(["Persian"] , None, "New York,NY" , ["hsdfs"])
-for person in ans:
-    print (person["name"] + " - " + person["address"])
+if __name__ == '__main__':
+	# run!
+	app.run()
+#ans = findHelper(["Persian"] , "No Preference", "New York,NY" , ["hsdfs"])
+#for person in ans:
+#    print (person["name"] + " - " + person["address"])
