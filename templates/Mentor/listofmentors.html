@@ -10,11 +10,23 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='stylesheet.css')}}">
 </head>
 
+<style>
+.titleFormat {
+    display: inline-block;
+    height: 100%;
+    position: relative;
+    left: 20px;
+    vertical-align: middle;
+}
+.img {
+  border-radius: 50%;
+}
+</style>
 <script>
     var header = "";
     header += "<div class=\"jumbotron professor\" id=\"jumbo\">";
-    header += "<img alt=\"logo\" src=\"{{url_for('static', filename='immigrationbackground.png')}}\" height=\"100\">";
-    header += "<h2 id=\"titleofpage\" class=\"set-manager\">ImmiConnect</h2>";
+    header += "<img alt=\"logo\" class=\"img\" src=\"{{url_for('static', filename='immigrationbackground.png')}}\" height=\"100\">";
+    header += "<h2 id=\"titleofpage\" class=\"titleFormat\">ImmiConnect</h2>";
 
     header += "</div>"
     document.write(header);
@@ -26,7 +38,7 @@
         <div class="program col-md-12 clearfix">
             <div class="col-md-6 col-sm info-wrapper clearfix">
                 <div id="results" class="program-info col-sm-12">
-                    <h4>Name</h4>
+                    <h4>List of Mentors</h4>
 	                	<script>
 								var url = window.location.search;
 								var query = url.substr(1);
@@ -45,44 +57,14 @@
 									var btn = document.createElement("BUTTON");
 									btn.innerHTML="Connect"
   									document.getElementById("results").appendChild(btn);
+  									btn.addEventListener ("click", function() {
+ 									 		alert("Connection Request Sent");
+										});
   									document.write("<br> <br>");
 								}
-
-
-								
-
-													 
-						</script> 
-                    <h4 class="location">Location</h4>
-                    	<script>
-	 
-								var url = window.location.search;
-								var query = url.substr(1);
-								var result = {};
-								query.split("&").forEach(function(part) {
-									var item = part.split("?");
-									result = decodeURIComponent(item[1]);
-									//result[item[0]] = decodeURIComponent(item[1]);
-								});
-								document.write(result + "<br>");
-						 
-						</script> 
-					<h4 class="phonenumber">Phone Number</h4>
-                    	<script>
-	 
-								var url = window.location.search;
-								var query = url.substr(1);
-								var result = {};
-								query.split("&").forEach(function(part) {
-									var item = part.split("?");
-									result = decodeURIComponent(item[2]);
-									//result[item[0]] = decodeURIComponent(item[1]);
-								});
-								document.write(result + "<br>");
 						 
 						</script>
 					<div></div>
-                    <button role="button" class="btn btn-default program-button" data-toggle="modal" data-target="#newSignup">Connect</button>
                 </div>
             </div>
 

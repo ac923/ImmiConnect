@@ -10,13 +10,26 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='stylesheet.css')}}">
 
 </head>
+<style>
+.titleFormat {
+    display: inline-block;
+    height: 100%;
+    position: relative;
+    left: 20px;
+    vertical-align: middle;
+}
+.img {
+  border-radius: 50%;
+}
+
+</style>
 
 <body>
 <script>
     var header = "";
     header += "<div class=\"jumbotron professor\" id=\"jumbo\">";
-    header += "<img alt=\"logo\" src=\"{{url_for('static', filename='immigrationbackground.png')}}\" height=\"100\">";
-    header += "<h2 id=\"titleofpage\" class=\"set-manager\">ImmiConnect</h2>";
+    header += "<img alt=\"logo\" class= \"img\" src=\"{{url_for('static', filename='immigrationbackground.png')}}\" height=\"100\">";
+    header += "<h2 id=\"titleofpage\" class=\"titleFormat\">ImmiConnect</h2>";
 
     header += "</div>"
     document.write(header);
