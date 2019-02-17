@@ -39,37 +39,52 @@ Select your Language:
 </select>
 <input type="button" value="Change the Language" onclick="GetSelectedTextValue()" />
 <script type="text/javascript">
+    var selectedValue; 
     function GetSelectedTextValue() {
-        var ddlFruits = document.getElementById("languagesel");
-        var selectedText = ddlFruits.options[ddlFruits.selectedIndex].innerHTML;
-        var selectedValue = ddlFruits.value;
+        var langval = document.getElementById("languagesel");
+        var selectedText = langval.options[langval.selectedIndex].innerHTML;
+        selectedValue = langval.value;
         translateElement(selectedValue,"locationid");
         translateElement(selectedValue,"genderid");
         translateElement(selectedValue,"questionid");
         translateElement(selectedValue,"unit");
         translateElement(selectedValue,"categoryid");
         translateElement(selectedValue,"titleofpage");
+        translateElement(selectedValue,"mentortitle");
+
 
 
     }
-</script>
+    function GetAnswers() {
+        var locationstring = document.getElementById("answer").value
+        var genderans = document.getElementById("unit")
+        var gendertext = genderans.options[genderans.selectedIndex].innerHTML;
+        var genderval = genderans.value;
+        var categoryans = document.getElementById("categoryid")
+        var categorytext = categoryans.options[categoryans.selectedIndex].innerHTML;
+        var categoryval = categoryans.value;
 
+        var user = {"language": selectedValue, "gender": genderval, "location": locationstring, "tags": categoryval};
+
+        $.post("/receiver", JSON.stringify(user), function(err,req,resp){
+        //console.log(resp);
+            console.log(JSON.parse(resp.responseText));
+        });
+        event.preventDefault();
+
+    }
+
+</script>
 
 
     <br><br>
     <div class="container q-table">
-        <table id="qTable" class="table table-hover table-striped hidden display select">
-            <tr>
-                <th>Question</th>
-                <th>Unit</th>
-                <th>Remove</th>
-            </tr>
-        </table>
+
 
 
         <!-- button to access new question modal -->
         <a class="btn btn-default add-q" role="button" data-toggle="modal"
-           style="margin-top: 15px;" data-target="#newQ">Find Your Mentor</a>
+           style="margin-top: 15px;" data-target="#newQ" id="mentortitle">Find Your Mentor</a>
     </div>
 
 
@@ -93,26 +108,25 @@ Select your Language:
                 <!-- Modal Body -->
                 <div class="modal-body">
 
-                    <form id="make-newq" method="POST">
                         <div class="form-group">
                             <div class="set-question set-question-input">
-                                <label id="locationid" for="question">What's your location?</label>
-                                <input type="text" class="form-control" id="question"
+                                <label id="locationid" for="question">What's your location? (City, State)</label>
+                                <input type="text" class="form-control" id="answer"
                                        name="qname" value="" />
+
                             </div>
                         </div>
-                        <div class="form-inline">
-                            <label id="genderid" for="exampleSelect3">Gender Preference</label>
-                            <select class="form-control" id="unit" name="unit">
-                                <option value ="Male">Male</option>
-                                <option value ="Female">Female</option>
-                                <option value ="No Preference">No Preference</option>
+                            <label id="genderid" for="gender">Gender Preference</label>
+                            <select id="unit">
+                                <option value=""></option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="No Preference">No Preference</option>
                             </select>
-                        </div>
-                        <div class="form-group">
-                            <label id="questionid" for="exampleSelect4">What is your question?</label>
                             <div></div>
-                        <select id = "categoryid" name="categoryid" multiple>
+                            <label id="questionid" for="gender">What is your question?</label>
+                            <select id="categoryid">
+                                <option value=""></option>
                                 <option value ="Finance">Finance</option>
                                 <option value ="Religious">Religious</option>
                                 <option value ="Medical">Medical</option>
@@ -126,11 +140,12 @@ Select your Language:
                             </select>
                         </div>
                         <div></div>
-                            <button type="submit" class="btn btn-primary">Find Mentor</button>
-                            <button type="submit" class="btn btn-primary">Cancel</button>
+                            <input type="button" value="Find Mentor" onclick="GetAnswers()" />
+
+                            
+                            <button type="submit" class="button">Cancel</button>
 
                         </div>
-                    </form>
                 </div>
 
                 </div>
@@ -160,5 +175,10 @@ Select your Language:
         }
         postRequest.send();
     }
-   
+
+
+
+
+
+
 </script>

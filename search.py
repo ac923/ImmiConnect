@@ -1,7 +1,3 @@
-
-def findCategory(input):
-    return
-
 import json
 from pprint import pprint
 from flask import Flask, render_template, request, redirect, Response
@@ -14,7 +10,7 @@ app = Flask(__name__)
 @app.route('/')
 def output():
 	# serve index template
-	return render_template('index.html')
+	return render_template('Mentor/mentorpage.html')
 
 def sortHelpers(helpers, userLocation):
 	origins=userLocation
@@ -54,7 +50,8 @@ def findHelper():
     language.append(Userdata["language"])
     genderPreference = Userdata["gender"]
     location = Userdata["location"]
-    tag = Userdata["tags"]
+    tag = []
+    tag.append(Userdata["tags"])
 
     foundHelp = False
     for person in data:
