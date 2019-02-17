@@ -30,15 +30,21 @@
 	                	<script>
 								var url = window.location.search;
 								var query = url.substr(1);
+								console.log(query.split("?"))
+								names=query.split("?")[0];
+								locations=query.split("?")[1]
+								numbers=query.split("?")[2]
+
+							
+								var nameList=names.replace("Name=","").split(",")
+								var numList=numbers.replace("Number=","").split(",")
+								var locList=locations.replace("Location=","").split(",")
 								var result = {};
-								query.split("&").forEach(function(part) {
-									var item = part.split("?");
-									console.log(item)
-									result = decodeURIComponent(item[0]);
-									console.log(result)
-									document.write(result + "<br>");
-									//result[item[0]] = decodeURIComponent(item[1]);
-								});
+								for(var i=0;i<nameList.length;i++){
+									document.write(nameList[i].split("%20").join(" ") +"     "+ numList[i]+"     "+ locList[2*i].split("%20").join(" ")+","+locList[2*i+1]+"<br>");
+								}
+
+
 								
 
 													 
