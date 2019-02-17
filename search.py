@@ -32,6 +32,7 @@ def sortHelpers(helpers, userLocation):
     places=[]
     for i in range(0,len(elems)):
         dis=int((elems[i]['distance']['text'].replace(",","")[:-3]))
+        helpers[i]["distance"]=elems[i]['distance']['text'].replace(",","")
         places.append({"helper":helpers[i], "distance":dis})
 
     def takeDistance(e):
